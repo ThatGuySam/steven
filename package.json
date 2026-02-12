@@ -1,5 +1,5 @@
 {
-  "name": "booking-website",
+  "name": "steven",
   "private": true,
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
@@ -7,10 +7,8 @@
     "app:dev": "npm run dev --workspace=apps/app",
     "api:dev": "npm run dev --workspace=apps/api",
     "app:build": "npm run build --workspace=apps/app",
-    "api:build": "npm run build --workspace=apps/api",
-    "app:deploy": "npm run deploy --workspace=apps/app",
-    "api:deploy": "npm run deploy --workspace=apps/api",
-    "deploy": "npm run app:deploy && npm run api:deploy",
+    "build": "npm run app:build",
+    "deploy": "npm run build && wrangler deploy",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write ."
@@ -19,6 +17,7 @@
     "concurrently": "^9.1.0",
     "typescript": "^5.7.0",
     "prettier": "^3.4.0",
-    "eslint": "^9.16.0"
+    "eslint": "^9.16.0",
+    "wrangler": "^4.0.0"
   }
 }

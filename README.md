@@ -1,6 +1,6 @@
-# BookNow - Online Booking Website
+# Steven - Online Booking Website
 
-A modern booking website built with React 19, Hono, Stripe, and Cloudflare. Based on the [Kriasoft React Starter Kit](https://github.com/kriasoft/react-starter-kit) architecture.
+A modern booking website built with React 19, Hono, Stripe, and Cloudflare Workers. Based on the [Kriasoft React Starter Kit](https://github.com/kriasoft/react-starter-kit) architecture.
 
 ## Features
 
@@ -9,7 +9,7 @@ A modern booking website built with React 19, Hono, Stripe, and Cloudflare. Base
 - **Stripe Payments** - Secure payment processing with Stripe
 - **Save Payment Info** - Customers can save cards for future bookings
 - **Bank Association** - Stripe Connect for business owners to link bank accounts and receive payouts
-- **Cloudflare Deployment** - Edge-first architecture on Cloudflare Workers + Pages
+- **Cloudflare Workers** - Single Workers deployment serving both API and frontend assets
 
 ## Tech Stack
 
@@ -20,7 +20,7 @@ A modern booking website built with React 19, Hono, Stripe, and Cloudflare. Base
 | Payments | Stripe (Payments, Connect, Webhooks) |
 | Storage | Cloudflare KV |
 | Build | Vite, TypeScript |
-| Deployment | Cloudflare Pages + Workers |
+| Deployment | Cloudflare Workers (single deploy) |
 
 ## Project Structure
 
@@ -69,14 +69,12 @@ packages/
 
 3. **Create Cloudflare KV namespace:**
    ```bash
-   cd apps/api
    npx wrangler kv namespace create BOOKINGS
    ```
-   Update `apps/api/wrangler.jsonc` with the returned namespace ID.
+   Update the root `wrangler.jsonc` with the returned namespace ID.
 
-4. **Set Stripe secrets for the API worker:**
+4. **Set Stripe secrets for the Worker:**
    ```bash
-   cd apps/api
    npx wrangler secret put STRIPE_SECRET_KEY
    npx wrangler secret put STRIPE_WEBHOOK_SECRET
    ```
@@ -90,27 +88,18 @@ packages/
 
 ## Deployment
 
-### Deploy API (Cloudflare Workers)
+Everything deploys as a single Cloudflare Worker with static assets:
 
 ```bash
-npm run api:deploy
+npm run deploy
 ```
 
-### Deploy Frontend (Cloudflare Pages)
+This builds the frontend with Vite, then deploys the Worker (API + static assets) to Cloudflare.
 
-```bash
-npm run app:build
-npm run app:deploy
-```
+**Build command** (for Cloudflare Dashboard): `npm run build`
+**Deploy command**: `npx wrangler deploy`
 
-### Set the API URL for production
-
-After deploying the API worker, set the production API URL for the frontend:
-
-```bash
-# In your Cloudflare Pages project settings, add:
-VITE_API_URL=https://booking-api.<your-subdomain>.workers.dev/api
-```
+Your app will be available at `https://steven.<your-subdomain>.workers.dev`
 
 ## Stripe Setup
 
