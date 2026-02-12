@@ -21,9 +21,9 @@ export function Layout({ children }: LayoutProps) {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white font-bold text-lg">
-              B
+              S
             </div>
-            <span className="text-xl font-bold text-gray-900">BookNow</span>
+            <span className="text-xl font-bold text-gray-900">Steven</span>
           </Link>
 
           {/* Desktop nav */}
@@ -108,7 +108,7 @@ export function Layout({ children }: LayoutProps) {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} BookNow. All rights reserved.
+              &copy; {new Date().getFullYear()} Steven. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-sm text-gray-500 hover:text-gray-700">

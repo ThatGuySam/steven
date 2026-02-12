@@ -19,7 +19,7 @@ const app = new Hono<{ Bindings: Env }>();
 app.use(
   "/api/*",
   cors({
-    origin: ["http://localhost:5173", "https://*.pages.dev"],
+    origin: ["http://localhost:5173", "https://*.workers.dev"],
     allowMethods: ["GET", "POST", "PUT", "DELETE"],
     allowHeaders: ["Content-Type", "Authorization"],
   }),
